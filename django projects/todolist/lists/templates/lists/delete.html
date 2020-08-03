@@ -1,0 +1,11 @@
+{% include 'lists/navbar.html' %}
+
+<h2>Are you sure you want to delet this order</h2>
+
+<form action="{% url 'deletes' list.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" button>
+        <button class="text-white bg-red-500 py-2 m-2 px-2 focus:outline-none hover:bg-indigo-600 rounded" type="submit" >Yes delete this item</button>
+</form>
+
+

@@ -1,0 +1,17 @@
+{% extends 'accounts/main.html' %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <legend>Register Now </legend><hr>
+        <fieldset>
+            {{form|crispy}}
+
+        </fieldset>
+        <br>
+        <button type="submit" class="btn btn-info">submit</button>
+    </form>
+
+{% endblock content %}

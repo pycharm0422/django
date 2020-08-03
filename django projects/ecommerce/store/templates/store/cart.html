@@ -1,0 +1,77 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  .quantit{
+    width: 7px;
+    display: inline-block;
+    padding: 3px;
+    height: 10px;
+  }
+  .boxes{
+    box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	  background-color: #fff;
+	  border-radius: 4px;
+	  padding: 10px;
+  }
+</style>
+
+
+  <div class="container boxes" >
+    <a class="btn btn-outline-secondary"> <--  Continue Shopping</a>
+    <hr>
+    <div class="row" style="margin-top: 10px;">
+      <div class="col" style="margin-left: 20px;" >
+        Items: <b> {{ order.total_item }} </b>
+      </div>
+      <div class="col">
+        Total: <b>$ {{ order.total_cost }}</b>
+      </div>
+      <div class="col" >
+        <a href="{% url 'checkout' %}" class="btn btn-primary" style="margin-bottom: 23px; float: right; margin-right: 30px; border-radius: 0px; " >checkout</a>
+      </div>
+    </div>
+  </div><br>
+    <table class="table boxes" >
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Item</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+
+          {% for item in items %}
+          <td> <img src="{{ item.product.imageUrl }}" alt="" width="90" height="80"> </td>
+          <td>{{ item.product.name }}</td>
+          <td>$ {{ item.product.price|floatformat:2 }}</td>
+          <td >
+            <div style="flex:1">
+              <p class="quantity">{{ item.quantity }}</p>
+              <div class="quantity ">
+                <img class="chg-quantity update-cart" data-product={{item.product.id}} data-action="add" src="{% static  'images/arrow-up.png' %}">
+            
+                <img class="chg-quantity update-cart" data-product={{item.product.id}} data-action="remove" src="{% static  'images/arrow-down.png' %}">
+              </div>
+            </div>
+          </div>
+        </td>
+          <td>${{ item.get_total|floatformat:2 }}</td>
+        </tr>
+        <tr>
+        {% endfor %}
+          
+         
+        
+      </tbody>
+    </table>
+  
+
+{% endblock content %}
+

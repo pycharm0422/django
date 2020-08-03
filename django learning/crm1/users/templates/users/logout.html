@@ -1,0 +1,13 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+    <h2>You have been logged out </h2>
+    <a href="{% url 'user-login' %}" class="btn btn-success">Login Again</a>
+    <div ><br>
+        <small>
+            <p>Don't have a account ? <a href="{% url 'user-registration' %}">Register Here</a></p>
+        </small>
+    </div>
+
+{% endblock content %}

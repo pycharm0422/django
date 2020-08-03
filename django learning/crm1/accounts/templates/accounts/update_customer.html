@@ -1,0 +1,13 @@
+{% extends 'accounts/main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br><br>
+    <form action="" method="post"  >
+        {% csrf_token %}
+        <fieldset>
+            {{customer.user.username}}
+            {{form|crispy}}
+        </fieldset>
+        <button class="btn btn-outline-primary" type="submit" > Done  </button>
+    </form>
+{% endblock content %}

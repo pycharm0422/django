@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'blog/tailwind.css' %}">
+
+  <title>Django</title>
+</head>
+
+
+
+<header class="text-gray-100 body-font navbar-expand bg-purple-600">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+        viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+      </svg>
+      <span class="ml-3 text-xl text-gray-100">Faraz Blog</span>
+    </a>
+    <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+      <a class="mr-5 hover:text-gray-900" href="{% url 'blog-home' %}"><b>Home</b> </a>
+      <a class="mr-5 hover:text-gray-900" href="{% url 'login' %}"><b>About</b> </a>
+      <a class="mr-5 hover:text-gray-900" href="{% url 'login' %}"><b>Services</b> </a>
+      <a class="mr-5 hover:text-gray-900" href="{% url 'login' %}"><b>Contact Us</b> </a>
+    </nav>
+    {% if user.is_authenticated %}
+
+    <div class="">
+      <style>
+        .dropdown:hover .dropdown-menu {
+          display: block;
+        }
+      </style>
+
+      <div class="dropdown inline-block relative">
+        <button class="text-gray-100 font-semibold py-2 px-4 rounded inline-flex items-center">
+          <span class="mr-1">
+            <div class="w-1/1 sm:w-1/1 pl-4">
+              <img src="https://cdn.pixabay.com/photo/2020/07/20/12/49/milky-way-5422901__340.jpg" alt="..."
+                class="shadow-lg rounded-full w-10 h-10 align-content-end border-none">
+              </div>
+          </span>
+          <a href="{% url 'profile' %}"><p class="flex-col ml-2" >{{user.username}}</p></a> 
+
+          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /> </svg>
+
+        </button>
+        <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
+          <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+              href="">Delete Post</a></li>
+          <li class=""><a class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+              href="{% url 'post-create' %}">Add Post</a></li>
+          <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+              href="{% url 'logout' %}">LogOut</a></li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    {% else %}
+    <a href="{% url 'login' %}"> <button
+        class="inline-flex items-center bg-blue-400 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">Login</button></a>
+    <a href="{% url 'registeration' %}"><button
+        class="inline-flex items-center bg-blue-400 border-0 ml-3 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0">Register</button></a>
+    {% endif %}
+
+  </div>
+</header>
+
+<body>
+
+  <div class="container px-5 py-2 mx-auto">
+
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+      {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% block content %}
+
+    {% endblock content %}
+  </div>
+
+
+  </div>
+</body>
+
+</html>

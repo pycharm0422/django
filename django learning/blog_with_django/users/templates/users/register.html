@@ -1,0 +1,52 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'users/bootstrap.css' %}">
+
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
+
+{% block content %}
+<div >
+
+<style>
+  .bg-img{
+    background-image: url(https://cdn.pixabay.com/photo/2020/07/16/13/34/lake-5410987__340.jpg);
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-position-x: 0vw;
+    background-position-y: 10vh;
+    background-size: cover;
+  }
+
+</style>
+<div class="bg-img table-borderless">
+
+<hr>
+    <section class="text-gray-700 body-font">
+        <div class="container px-5 py-24 mx-auto flex flex-wrap items-center ">
+            
+          <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0" >
+            <h1 class="title-font font-medium text-3xl text-gray-100">Slow-carb next level shoindcgoitch ethical authentic, poko scenester</h1>
+            <p class="leading-relaxed mt-4 text-gray-100">Poke slow-carb mixtape knausgaard, typewriter street art gentrify hammock starladder roathse. Craies vegan tousled etsy austin.</p>
+
+          </div>
+          <div class="lg:w-2/6 md:w-1/2 bg-gray-200 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+            <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Register Now</h2>
+            <form action="" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    {{form|crispy}}
+                </fieldset>
+                <div class="form-group">
+                    <button class="flex mx-auto mt-6 text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded" type="submit" >Submit</button>
+                </div>
+        
+            </form>
+            <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+</div>
+{% endblock content %}

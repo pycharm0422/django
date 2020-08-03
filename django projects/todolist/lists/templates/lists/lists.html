@@ -1,0 +1,73 @@
+{% load tailwind_filters %}
+
+{% include 'lists/navbar.html' %}
+<section class="text-gray-700 body-font">
+    <div class="container px-5 py-24 mx-auto flex flex-wrap">
+
+
+        <div class="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
+            <form action="" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    {{form|crispy}}
+                </fieldset>
+                <button type="submit" class="text-white bg-indigo-500 py-2 m-2 px-2 focus:outline-none hover:bg-indigo-600 rounded">Submit</button><br><br>
+               
+            </form>
+            <hr>
+            <br>
+        </div>
+    </div>
+</section>
+
+
+<section class="text-gray-700 body-font">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-col text-center w-full mb-20">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">To Do Lists</h1>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn
+                asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p>
+        </div>
+        <div class="flex flex-wrap -m-2">
+            {% for list in lists %}
+            {% if list.important == True %}
+            <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg bg-blue-300">
+                    <div class="flex-grow">
+                        {% if list.completed == True %}
+                        <strike class="text-gray-900">{{ list.full_note }}</strike>
+                        {% else %}
+                        <h1 class="text-blue-800"> Important ! </h1>
+                        <h3 class="text-gray-900">{{ list.full_note }}</h3>
+                        {% endif %}
+
+                    </div>
+                    <a class="text-white bg-indigo-500 py-2 m-2 px-2 focus:outline-none hover:bg-indigo-600 rounded"
+                        href="{% url 'updates' list.pk %}">Update</a>
+                    <a class="text-white bg-red-500 py-2 m-2 px-2 focus:outline-none hover:bg-indigo-600 rounded"
+                        href="{% url 'deletes' list.pk %}">Remove</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
+                <div class="h-full flex items-center border-gray-200 border p-4 rounded-lg">
+
+                    <div class="flex-grow">
+                        {% if list.completed == True %}
+                        <strike class="text-gray-900">{{ list.full_note }}</strike>
+                        {% else %}
+                        <h1 class="text-blue-800"> Important ! </h1>
+                        <h3 class="text-gray-900">{{ list.full_note }}</h3>
+                        {% endif %}
+                    </div>
+                    <a class="text-white bg-indigo-500 py-2 m-2 px-2 focus:outline-none hover:bg-indigo-600 rounded"
+                        href="{% url 'updates' list.pk %}">Update</a>
+                    <a class="text-white bg-red-500 py-2 m-2 px-2 focus:outline-none hover:bg-indigo-600 rounded"
+                        href="{% url 'deletes' list.pk %}">Remove</a>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>

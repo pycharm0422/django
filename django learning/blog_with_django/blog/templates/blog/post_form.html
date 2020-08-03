@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'users/bootstrap.css' %}">
+
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
+{% block content %}
+<div >
+  
+  <section class="text-gray-700 body-font">
+    
+    <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+      <h1 class="text-gray-900 text-lg font-medium title-font mb-5">Create Post / Update Post</h1>
+  
+          <div class="bg-gray-200 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+            <form action="" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    {{form|crispy}}
+                </fieldset>
+                <div class="form-group"><br>
+                    <button class="text-white bg-indigo-500 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded" type="submit" >Submit</button>
+                </div>
+        
+            </form>
+           
+          </div>
+        </div>
+      </section>
+
+    
+</div>
+{% endblock content %}

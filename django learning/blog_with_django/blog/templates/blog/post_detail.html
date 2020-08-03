@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'users/bootstrap.css' %}">
+
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
+{% block content %}
+<div >
+    <section class="text-gray-700 body-font overflow-hidden ">
+        <div class="container px-5 py-16 mx-auto">
+          <div class="-my-8">
+            <div class="py-8 flex flex-wrap md:flex-no-wrap">
+              <div class="md:w-34 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                <span class="tracking-widest font-medium title-font text-gray-900"></span>
+                <div class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full  text-indigo-500 flex-shrink-0">
+                  <div class="w-1/1 sm:w-1/1 px-4">
+                      <img src="https://cdn.pixabay.com/photo/2020/07/20/12/49/milky-way-5422901__340.jpg" alt="..." class="shadow-lg rounded-full h-24 align-content-end border-none">
+                  </div>
+              </div>
+            </div>
+            <div class="md:flex-grow">
+                <span class="mt-1 text-gray-500 text-sm float-right">{{object.date_posted}}</span>
+                <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">{{object.title}}</h2>
+                 <a href=""><small class="text-indigo-500" > {{object.author}} </small></a>
+                <p class="leading-relaxed">{{object.content}}</p>
+              </div>
+              
+            </div>
+            {% if request.user == post.author %}
+              <a href="{% url 'post-update' post.id %} " class="float-right nline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" > Update Post </a>
+              <a href="{% url 'post-update' post.id %} " class="float-right nline-flex mr-4 text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" > Delete Post </a>
+              {% endif %}
+      </div>
+      
+          </div>
+        </div>
+      </section>
+
+    
+</div>
+{% endblock content %}

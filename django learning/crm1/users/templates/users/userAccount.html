@@ -1,0 +1,22 @@
+{% extends 'accounts/main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br><br>
+
+<div class="inline">
+    <div class="">
+        <img  src="{{request.user.customer.profile_pic.url}}" width="140" height="140" class="rounded-circle">
+
+    <div class="container float-right">
+        <form action="" method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <fieldset>
+                {{form|crispy}}
+            </fieldset>
+            <button class="btn btn-outline-primary" type="submit" > Done  </button>
+        </form>
+
+    </div>
+</div>
+<br><br>
+{% endblock content %}

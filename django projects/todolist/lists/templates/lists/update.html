@@ -1,0 +1,17 @@
+{% load tailwind_filters %}
+
+{% include 'lists/navbar.html' %}
+
+
+<section class="text-gray-700 body-font">
+    <div class="container px-5 py-24 mx-auto flex flex-wrap">
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <fieldset>
+                {{form|crispy}}
+            </fieldset>
+            <button class="text-white bg-indigo-500 py-2 m-2 px-2 focus:outline-none hover:bg-indigo-600 rounded" type="submit" >Update</button>
+        </form>
+    </div>
+</section>
